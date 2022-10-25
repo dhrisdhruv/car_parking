@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "830601114588",
+    "project_id": "car-parking-dhruv",
+    "storage_bucket": "car-parking-dhruv.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:830601114588:android:6c71811d86becefe825519",
+        "android_client_info": {
+          "package_name": "com.dhrisdhruv.car_parking"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "830601114588-h2or9aelfggonr28pdmcpbbdtpq9ns5a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBMNxSNYDjTKsKXnsF51Rl-Ljr_7DNhmIg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "830601114588-h2or9aelfggonr28pdmcpbbdtpq9ns5a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
