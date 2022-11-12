@@ -78,16 +78,6 @@ class MyDrawer extends StatelessWidget {
               Navigator.pushNamed(context, '/');
             },
           ),
-          ListTile(
-            leading: Icon(Icons.book_online),
-            title: Text("Your Booking"),
-            onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => YourBooking()));
-            },
-          )
         ],
       ),
     );

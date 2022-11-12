@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:car_parking/util.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:car_parking/user.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 

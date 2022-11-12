@@ -3,7 +3,6 @@ import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
 import 'package:car_parking/util.dart';
 import 'package:firebase_database/firebase_database.dart';
-import 'package:car_parking/user.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -29,7 +28,6 @@ class FreeSlots extends StatefulWidget {
 
 class _FreeSlotsState extends State<FreeSlots> {
   late Query _slotQuery;
-  late Query _userQuery;
   late DatabaseReference ref;
   Widget _buildSlotItem({required Map slot}) {
     bool slotState = slot["state"];
@@ -51,12 +49,9 @@ class _FreeSlotsState extends State<FreeSlots> {
               await updateRef.update({
                 "state":false,
               });
-              final updateUser = ref.child("users/${userid}");
-              await updateUser.update({
-                "userid":userid,
-                "slotid":slotNumber,
-              });
-              Navigator.push(context, MaterialPageRoute(builder: (context)=>YourBooking()));
+              Navigator.push(context,
+                  MaterialPageRoute(
+                      builder: (context)=>YourBooking(index: slotNumber,)));
             }, child: Text("Book"))
               :
             Icon(Icons.car_repair),

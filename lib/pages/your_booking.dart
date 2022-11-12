@@ -7,19 +7,17 @@ import 'package:firebase_auth/firebase_auth.dart';
 final FirebaseAuth _auth = FirebaseAuth.instance;
 
 class YourBooking extends StatefulWidget {
-  YourBooking({super.key});
+  var index;
 
-  _YourBookingState createState() => _YourBookingState();
+  YourBooking({super.key, @required this.index});
+
+  _YourBookingState createState() => _YourBookingState(index: index);
 }
 
 class _YourBookingState extends State<YourBooking> {
-  late String userid;
-  late DatabaseReference ref;
-  late final snapshot;
-  late int index;
-  late Query _slotQuery;
-  late Map users;
-  _YourBookingState();
+  var index;
+
+  _YourBookingState({@required this.index});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,10 +32,6 @@ class _YourBookingState extends State<YourBooking> {
   @override
   void initState() {
     super.initState();
-    ref = FirebaseDatabase.instance.ref();
-    userid = _auth.currentUser!.uid;
-    snapshot = ref.child("users/${userid}").get();
-    index = snapshot;
 
   }
 }
