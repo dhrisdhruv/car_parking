@@ -14,10 +14,22 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: MyAppBar(),
       drawer: MyDrawer(),
-      body: userid!=null?FreeSlots():AlertDialog(title: Text("No user logged in"),
-        actions: [
-          ElevatedButton(onPressed: (){}, child: Text("OK"))
-        ],),
+      body: userid != null
+          ? FreeSlots()
+          : Container(
+              child: Center(
+                child: ElevatedButton(
+                  child: Text("No User Logged in !"),
+                  onPressed: () {
+                    showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(title: Text("No user logged in"));
+                        });
+                  },
+                ),
+              ),
+            ),
     );
   }
 }
@@ -43,18 +55,22 @@ class _FreeSlotsState extends State<FreeSlots> {
         children: [
           Icon(Icons.car_rental),
           Text("Slot : ${slotNumber}"),
-          slotState ?
-            ElevatedButton(onPressed: () async {
-              final updateRef = ref.child("slots/slot${slotNumber}/");
-              await updateRef.update({
-                "state":false,
-              });
-              Navigator.push(context,
-                  MaterialPageRoute(
-                      builder: (context)=>YourBooking(index: slotNumber,)));
-            }, child: Text("Book"))
-              :
-            Icon(Icons.car_repair),
+          slotState
+              ? ElevatedButton(
+                  onPressed: () async {
+                    final updateRef = ref.child("slots/slot${slotNumber}/");
+                    await updateRef.update({
+                      "state": false,
+                    });
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => YourBooking(
+                                  index: slotNumber,
+                                )));
+                  },
+                  child: Text("Book"))
+              : Icon(Icons.car_repair),
         ],
       ),
     );
@@ -69,10 +85,12 @@ class _FreeSlotsState extends State<FreeSlots> {
 
   @override
   Widget build(BuildContext context) {
-    return FirebaseAnimatedList(query: _slotQuery, itemBuilder: (
-        BuildContext context, DataSnapshot snapshot, Animation<double> animation, int index){
-      Map slots = snapshot.value as Map;
-      return _buildSlotItem(slot: slots);
-    });
+    return FirebaseAnimatedList(
+        query: _slotQuery,
+        itemBuilder: (BuildContext context, DataSnapshot snapshot,
+            Animation<double> animation, int index) {
+          Map slots = snapshot.value as Map;
+          return _buildSlotItem(slot: slots);
+        });
   }
 }

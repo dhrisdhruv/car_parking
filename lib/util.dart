@@ -14,26 +14,32 @@ class SignOut extends StatelessWidget {
       onPressed: () async {
         final User? user = _auth.currentUser;
         if (user == null) {
-          AlertDialog(
-            title: Text("No user logged in"),
-            actions: [
-              ElevatedButton(onPressed: (){}, child: Text("OK"))
-            ],
-          );
+          showDialog(context: context, builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text("No user logged in"),
+              actions: [
+                ElevatedButton(onPressed: (){}, child: Text("OK"))
+              ],
+            );
+          });
+
         } else {
           await _auth.signOut();
           final String uid = user.uid;
-          AlertDialog(
-            title: Text("User " + uid + " is logged out !"),
-            actions: [
-              ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/');
-                  },
-                  child: Text("OK")
-              )
-            ],
-          );
+          showDialog(context: context, builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text("User " + uid + " is logged out !"),
+              actions: [
+                ElevatedButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/');
+                    },
+                    child: Text("OK")
+                )
+              ],
+            );
+          });
+
         }
       },
       child: Icon(Icons.logout),
