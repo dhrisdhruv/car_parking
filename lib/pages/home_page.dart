@@ -44,6 +44,7 @@ class _FreeSlotsState extends State<FreeSlots> {
   Widget _buildSlotItem({required Map slot}) {
     bool slotState = slot["state"];
     int slotNumber = slot["id"];
+    double waitTime = slot["wt"];
     String? userid = _auth.currentUser?.uid;
     return Container(
       color: slotState ? Colors.green : Colors.red,
@@ -61,6 +62,7 @@ class _FreeSlotsState extends State<FreeSlots> {
                     final updateRef = ref.child("slots/slot${slotNumber}/");
                     await updateRef.update({
                       "state": false,
+                      "BookingDevice": "app",
                     });
                     Navigator.push(
                         context,
@@ -71,6 +73,7 @@ class _FreeSlotsState extends State<FreeSlots> {
                   },
                   child: Text("Book"))
               : Icon(Icons.car_repair),
+          Text("Expected Wait Time: ${waitTime}"),
         ],
       ),
     );

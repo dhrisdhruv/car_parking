@@ -18,7 +18,7 @@ class _LandingPageState extends State<LandingPage> {
           Container(
               child: Center(
             child:
-                Text("Welcome to Smart car parking System\nLogin or Sign up"),
+                Text("Welcome to Smart parking System\nLogin or Sign up"),
           )),
           ElevatedButton(
               onPressed: () {

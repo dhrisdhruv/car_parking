@@ -66,6 +66,7 @@ class BookingDone extends StatelessWidget {
                   final ref = FirebaseDatabase.instance.ref().child(path);
                   await ref.update({
                     "state":true,
+                    "BookingDevice":"",
                   });
                   Navigator.pushNamed(context, '/homepage');
                 },

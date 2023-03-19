@@ -1,6 +1,30 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyDVBSe5K3VIc1lk4dN0mLztJa-b0_jDXf4",
+    authDomain: "car-parking-dhruv.firebaseapp.com",
+    databaseURL: "https://car-parking-dhruv-default-rtdb.firebaseio.com",
+    projectId: "car-parking-dhruv",
+    storageBucket: "car-parking-dhruv.appspot.com",
+    messagingSenderId: "830601114588",
+    appId: "1:830601114588:web:8a0ea304ce1cf1f2825519",
+    measurementId: "G-QXDZQXB9YS"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+</script>
   <!--
     If you are serving your web app in a path other than the root, change the
     href value below to reflect the base path you are serving from.
@@ -38,8 +62,10 @@
   </script>
   <!-- This script adds the flutter initialization JS code -->
   <script src="flutter.js" defer></script>
+
 </head>
 <body>
+
   <script>
     window.addEventListener('load', function(ev) {
       // Download main.dart.js
@@ -54,5 +80,6 @@
       });
     });
   </script>
+
 </body>
 </html>

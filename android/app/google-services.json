@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "830601114588",
+    "firebase_url": "https://car-parking-dhruv-default-rtdb.firebaseio.com",
     "project_id": "car-parking-dhruv",
     "storage_bucket": "car-parking-dhruv.appspot.com"
   },
