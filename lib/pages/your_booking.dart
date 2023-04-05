@@ -16,6 +16,8 @@ class YourBooking extends StatefulWidget {
 
 class _YourBookingState extends State<YourBooking> {
   var index;
+  late Query _slotQuery;
+  late DatabaseReference ref;
 
   _YourBookingState({@required this.index});
   @override
@@ -29,10 +31,21 @@ class _YourBookingState extends State<YourBooking> {
         ],),
     );
   }
-  @override
-  void initState() {
-    super.initState();
 
+  void updateState(int index) async {
+    final updateRef = ref.child("slots/slot${index}/");
+    await updateRef.update({
+      "state": false,
+      "BookingDevice": "app",
+    });
+  }
+
+  @override
+  initState() {
+    super.initState();
+    ref = FirebaseDatabase.instance.ref();
+    _slotQuery = ref.child("slots").orderByChild("id");
+    updateState(index);
   }
 }
 

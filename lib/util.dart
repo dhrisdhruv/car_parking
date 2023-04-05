@@ -10,7 +10,9 @@ class SignOut extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
+    return MaterialButton(
+      color: Colors.black,
+      textColor: Colors.white,
       onPressed: () async {
         final User? user = _auth.currentUser;
         if (user == null) {
@@ -32,7 +34,7 @@ class SignOut extends StatelessWidget {
               actions: [
                 ElevatedButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, '/');
+                      Navigator.pushNamed(context, '/landing');
                     },
                     child: Text("OK")
                 )
@@ -57,6 +59,8 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      elevation: 200.0,
+      backgroundColor: Colors.black,
       title: Text("Smart Car Parking System"),
       actions: [
         SignOut(),

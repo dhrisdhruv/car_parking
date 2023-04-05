@@ -59,11 +59,7 @@ class _FreeSlotsState extends State<FreeSlots> {
           slotState
               ? ElevatedButton(
                   onPressed: () async {
-                    final updateRef = ref.child("slots/slot${slotNumber}/");
-                    await updateRef.update({
-                      "state": false,
-                      "BookingDevice": "app",
-                    });
+
                     Navigator.push(
                         context,
                         MaterialPageRoute(
