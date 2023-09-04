@@ -6,51 +6,51 @@ import './pages/landing_page.dart';
 import 'package:car_parking/pages/signup_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
-import 'package:splashscreen/splashscreen.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'dart:async';
 
 Future<void> main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  WidgetsFlutterBinding.ensureInitialized();
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
   runApp(MyApp());
 }
 
+class MyApp extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return MyAppState();
+  }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+}
+
+class MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+
+
+
+    void handleTimeout() {
+      FlutterNativeSplash.remove();
+    }
+
+    Timer scheduleTimeout([int seconds = 1]) {
+      return Timer(Duration(seconds: seconds), handleTimeout);
+    }
+
+
+    scheduleTimeout(2);
+
+
     return MaterialApp(
-      home: SplashScreen(
-        seconds: 3,
-        navigateAfterSeconds: LandingPage(),
-        title: const Text(
-          "Smart Car Parking",
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 20,
-            color: Colors.white,
-          ),
-        ),
-        loaderColor: Color.fromRGBO(255, 114, 94, 1),
-        loadingText: Text(
-            "Just checking free parking spots :)",
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 20,
-            color: Colors.white,
-          ),
-        ),
-        image: Image.asset("assets/splashScreen.png"),
-        photoSize: 150,
-        gradientBackground: RadialGradient(colors: [Colors.purple, Colors.black]),
-      ),
+      home: LandingPage(),
       routes: {
         '/landing': (context) => LandingPage(),
         '/login': (context) => LoginPage(),
         '/signup': (context) => SignUpPage(),
-        '/yourbooking': (context) => YourBooking(),
+        '/yourbooking': (context) => YourBooking(index: 0,),
         '/homepage': (context) => HomePage(),
       },
     );
