@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:car_parking/util.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:maps_launcher/maps_launcher.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 
@@ -56,36 +57,46 @@ class BookingDone extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return Container(
-      padding: EdgeInsets.zero,
-      child: Card(
-        color: Colors.green,
-        elevation: 10,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            ListTile(
-              leading: Icon(Icons.done),
-              title: Text("Your booking is confirmed"),
-            ),
-            ListTile(
-              leading: Icon(Icons.arrow_forward),
-              title: Text("Your slot number is $index"),
-            ),
-            ElevatedButton(
+    return Center(
+      child: Container(
+        height: MediaQuery.of(context).size.height/2,
+        width: MediaQuery.of(context).size.width/2,
+        padding: EdgeInsets.all(10),
+        child: Card(
+          color: Colors.green,
+          elevation: 100,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisSize: MainAxisSize.max,
+            children: <Widget>[
+              ListTile(
+                leading: Icon(Icons.done),
+                title: Text("Your booking is confirmed"),
+              ),
+              ListTile(
+                leading: Icon(Icons.arrow_forward),
+                title: Text("Your slot number is $index"),
+              ),
+              ElevatedButton(
+                  onPressed: () async {
+                    final path = "slots/slot${index}/";
+                    final ref = FirebaseDatabase.instance.ref().child(path);
+                    await ref.update({
+                      "state":true,
+                      "BookingDevice":"",
+                    });
+                    Navigator.pushNamed(context, '/homepage');
+                  },
+                  child: Text("Open Gate")
+              ),
+              ElevatedButton(
                 onPressed: () async {
-                  final path = "slots/slot${index}/";
-                  final ref = FirebaseDatabase.instance.ref().child(path);
-                  await ref.update({
-                    "state":true,
-                    "BookingDevice":"",
-                  });
-                  Navigator.pushNamed(context, '/homepage');
+                  await MapsLauncher.launchCoordinates(12.8406, 80.1534, "Vit Chennai");
                 },
-                child: Text("Open Gate")
-            ),
-          ],
+                child: Text("Take me to the location"),
+              ),
+            ],
+          ),
         ),
       ),
     );

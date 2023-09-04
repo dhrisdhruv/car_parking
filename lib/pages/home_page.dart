@@ -47,30 +47,37 @@ class _FreeSlotsState extends State<FreeSlots> {
     double waitTime = slot["wt"];
     String? userid = _auth.currentUser?.uid;
     return Container(
-      color: slotState ? Colors.green : Colors.red,
-      margin: EdgeInsets.symmetric(vertical: 10),
-      padding: EdgeInsets.all(10),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Icon(Icons.car_rental),
-          Text("Slot : ${slotNumber}"),
-          slotState
-              ? ElevatedButton(
-                  onPressed: () async {
+      height: MediaQuery.of(context).size.height/5,
+      width: MediaQuery.of(context).size.width/2,
+      color: Colors.transparent,
+      margin: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+      padding: EdgeInsets.all(5),
 
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => YourBooking(
-                                  index: slotNumber,
-                                )));
-                  },
-                  child: Text("Book"))
-              : Icon(Icons.car_repair),
-          Text("Expected Wait Time: ${waitTime}"),
-        ],
+      child: Card(
+        elevation: 100,
+        color: slotState ? Colors.green : Colors.red,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Icon(Icons.car_rental),
+            Text("Slot : ${slotNumber}"),
+            slotState
+                ? ElevatedButton(
+                onPressed: () async {
+
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => YourBooking(
+                            index: slotNumber,
+                          )));
+                },
+                child: Text("Book"))
+                : Icon(Icons.car_repair),
+            Text("Expected Wait Time: ${waitTime}"),
+          ],
+        ),
       ),
     );
   }
