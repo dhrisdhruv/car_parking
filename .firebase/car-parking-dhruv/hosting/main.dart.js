@@ -25772,7 +25772,7 @@ $1(a){var s=$.bX
 s=(s==null?$.bX=A.eC(self.window.flutterConfiguration):s).b
 if(s==null)s=null
 else{s=s.canvasKitBaseUrl
-if(s==null)s=null}return(s==null?"https://www.gstatic.com/flutter-canvaskit/b20183e04096094bcc37d9cde2a4b96f5cc684cf/":s)+a},
+if(s==null)s=null}return(s==null?"https://www.gstatic.com/flutter-canvaskit/9064459a8b0dcd32877107f6002cc429a71659d1/":s)+a},
 $S:60}
 A.al5.prototype={
 $1(a){this.a.remove()
@@ -43103,7 +43103,7 @@ A.aaS.prototype={
 $0(){A.re(this.a,"/landing",t.X)},
 $S:0}
 A.m3.prototype={
-K(a){var s=null,r=A.co("Smart Car Parking System",s,s,s,s,s,s),q=A.b([new A.LZ(s)],t.p)
+K(a){var s=null,r=A.co("BookMySpot System",s,s,s,s,s,s),q=A.b([new A.LZ(s)],t.p)
 return new A.vj(r,q,200,B.l,new A.S4(s,s,1/0,56),s)}}
 A.m4.prototype={
 K(a){var s=null,r=A.b([A.aoe(A.o1(B.BW,s),new A.a68(a),A.co("Landing Page",s,s,s,s,s,s))],t.p),q=A.as([null,0],t.LO,t.S),p=!0

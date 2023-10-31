@@ -61,7 +61,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       elevation: 200.0,
       backgroundColor: Colors.black,
-      title: Text("Smart Car Parking System"),
+      title: Text("BookMySpot System"),
       actions: [
         SignOut(),
       ],
