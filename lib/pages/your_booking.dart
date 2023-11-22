@@ -4,6 +4,7 @@ import 'package:car_parking/util.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:maps_launcher/maps_launcher.dart';
+import 'package:dio/dio.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 
@@ -15,14 +16,21 @@ class YourBooking extends StatefulWidget {
   _YourBookingState createState() => _YourBookingState(index: index);
 }
 
+void makePost() async {
+  final dio = Dio();
+  final response = await dio.post("https://maker.ifttt.com/trigger/booking_confirmed/with/key/bR5URUoN7Nsy0JwNM7lZN_");
+}
+
 class _YourBookingState extends State<YourBooking> {
   var index;
   late Query _slotQuery;
   late DatabaseReference ref;
 
+
   _YourBookingState({@required this.index});
   @override
   Widget build(BuildContext context) {
+    makePost();
     return Scaffold(
       appBar: MyAppBar(),
       drawer: MyDrawer(),

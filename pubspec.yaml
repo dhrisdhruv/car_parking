@@ -50,6 +50,7 @@ dependencies:
   flutter_osm_plugin: ^0.60.4
   url_launcher: ^6.1.14
   maps_launcher: ^2.2.0
+  dio: ^5.3.4
 
 dev_dependencies:
   flutter_test:
